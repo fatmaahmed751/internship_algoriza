@@ -31,6 +31,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   secText(text: 'Email') ,
                   defaultFormField(
+
                       oneText: 'Eg.example@email.com',
                       keyboardType: TextInputType.emailAddress),
                   const SizedBox(height: 5.0,),

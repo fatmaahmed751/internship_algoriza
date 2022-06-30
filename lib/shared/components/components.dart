@@ -1,4 +1,8 @@
+
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+
+import '../../loginscreen/loginscreen.dart';
 
 Widget welcomeText({
   String text='Welcome to fashion Daily',
@@ -57,26 +61,32 @@ Widget defaultFormField({
   Color color=Colors.black,
   Color borderColor=Colors.black,
   required TextInputType keyboardType,
-
 })=>
-    TextFormField(
-      decoration:  InputDecoration(
-        hintText: oneText,
-        //'+81 Eg.0125968',
-        hintStyle:TextStyle(
-          color: Colors.grey[400],
-        ) ,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(7.0),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-            )
-        ),
-      ),
-      keyboardType:TextInputType.phone ,
-    );
+        TextFormField(
+
+          decoration: InputDecoration(
+            hintText: oneText,
+         prefixIcon: CountryCodePicker(
+           initialSelection: 'eg',
+           showFlag: false,
+         ),
+            //'+81 Eg.0125968',
+            hintStyle:TextStyle(
+              color: Colors.grey[400],
+            ),
+
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(7.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.redAccent,
+                )
+            ),
+          ),
+          keyboardType:TextInputType.phone ,
+        );
+
 
 Widget defaultButton({
   double height=0.0,
@@ -187,4 +197,24 @@ Widget desText({
           color: Colors.grey[600],
           fontSize: 15.0,
         ),),
+    );
+Widget onBoardButton(
+)=>
+    Container(
+      width: double.infinity,
+      height: 40.0,
+      decoration: BoxDecoration(
+        color: Colors.teal,
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: (
+  MaterialButton(
+  onPressed: () {
+  },
+  child: Text('Get Started',
+  style: TextStyle(
+      color: Colors.white,
+  ),),
+)
+      ),
     );

@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:internship_algoriza/loginscreen/loginscreen.dart';
+import 'package:internship_algoriza/shared/components/components.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -6,70 +9,74 @@ class OnBoardingScreen extends StatelessWidget {
   var boardController=PageController();
   List<BoardingItem> boardingItems = [
     BoardingItem(
-        image: 'assets/images/image_2.jpg',
+        image: 'assets/images/delivering-food.png',
         text: 'Get Food delivery to your'
             ' doorstep asap',
         subTitle:
         ' we have young and professional delivery team that will bring your food as soon as possible to your doorstep'),
-    BoardingItem(image: 'assets/images/image_2.jpg', text: 'Buy any Food from your favorite restaurant', subTitle: 'We are constnatly adding your favorite restaurant throughout the territory and around your area carefully selected'
+    BoardingItem(image: 'assets/images/sammy-done.png',
+        text: 'Buy any Food from your favorite restaurant',
+        subTitle: 'We are constnatly adding your favorite restaurant throughout the territory and around your area carefully selected'
     ),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
           actions: [
             Container(
+              width:80.0,
+              height: 20.0,
               decoration:BoxDecoration(
-                color: Colors.yellow[300],
-                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.yellow[50],
+
+                borderRadius: BorderRadius.circular(20.0),
+
               ) ,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text('Skip',
-                    style: TextStyle(
-                      color: Colors.black54,
-                    ),),
-                ),
+              child: TextButton(
+                onPressed: () {
+                  /*navigateTo(
+                    context,index
+                  );*/
+                },
+                child: const Text('Skip',
+                  style: TextStyle(
+                    color: Colors.black54,
+                  ),),
               ),
             ),
           ],
         ),
 
-
         body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              PageView.builder(
-                itemBuilder: (context, index) =>
-                    BuildBoardingItem(boardingItems[index]),
-                itemCount: boardingItems.length,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  SmoothPageIndicator(controller:boardController ,
-                      effect: const ExpandingDotsEffect(
-                        dotColor: Colors.grey,
-                        activeDotColor: Colors.deepOrange,
-                        dotHeight: 12,
-                        dotWidth:12 ,
-                        spacing: 5.0,
-                        expansionFactor: 3,
-                      ),
-                      count:boardingItems.length ),
-                ],
-              ),
-            ],
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    itemBuilder: (context, index) =>
+                        BuildBoardingItem(boardingItems[index]),
+                    itemCount: boardingItems.length,
+                  ),
+                ),
+                SmoothPageIndicator(controller:boardController ,
+                    effect: const ExpandingDotsEffect(
+                      dotColor: Colors.grey,
+                      activeDotColor: Colors.deepOrange,
+                      dotHeight: 6,
+                      dotWidth:6 ,
+                      spacing: 5.0,
+                      expansionFactor: 3,
+                    ),
+                    count:boardingItems.length ),
+              ],
+            ),
           ),
         ));
   }
@@ -80,9 +87,10 @@ Widget BuildBoardingItem(BoardingItem item) => Center(
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      Expanded(child: Image(image: AssetImage('${item.image}'),)),
+      Expanded(
+          child: Image(image: AssetImage('${item.image}'),)),
       const SizedBox(
-        height: 10,
+        height: 20,
       ),
       Text(
         '${item.text}',
@@ -91,62 +99,30 @@ Widget BuildBoardingItem(BoardingItem item) => Center(
         overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: 30,
+          fontSize: 30.0,
         ),
       ),
       Center(
         child: Text(
-          '${ item.subTitle}',
+          '${item.subTitle}',
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.grey[600],
-            fontSize: 20.0,
+            fontSize: 10.0,
           ),
         ),
       ),
-      const SizedBox(
-        height: 10.0,
+      SizedBox(
+        height: 5.0,
       ),
-      Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          color: Colors.teal[400],
-        ),
-        height: 50.0,
-        width: double.infinity,
-// color: Colors.teal,
-        child: MaterialButton(
-          onPressed: () {},
-          child: const Text(
-            'Get Started',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-// color: Colors.teal,
-        ),
-      ),
-      const SizedBox(
-        height: 20.0,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Don\'t have an account?',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Sign Up',
-            style: TextStyle(
-              color: Colors.teal[400],
-            ),
-          ),
-        ],
-      ),
+           onBoardButton(),
+      SizedBox(height: 5.0,),
+      thirdRow(text: 'Don\'t have an account? ', secText: 'Sign in'),
     ],
   ),
+
 );
 
 class BoardingItem {
