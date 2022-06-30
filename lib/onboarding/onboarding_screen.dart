@@ -58,6 +58,8 @@ class OnBoardingScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const Image(image:AssetImage('assets/images/krave.png')),
+
                 Expanded(
                   child: PageView.builder(
                     itemBuilder: (context, index) =>
