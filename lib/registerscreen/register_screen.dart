@@ -20,10 +20,13 @@ class RegisterScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  welcomeText(),
+                  welcomeText(
+                    context
+                  ),
                   const SizedBox(
                     height: 5.0,),
                   defaultRow(
+                    context,
                     text:'Register',
                   ),
                   const SizedBox(

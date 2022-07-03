@@ -13,8 +13,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-debugShowCheckedModeBanner: false,
-     home:OnBoardingScreen(),
+    debugShowCheckedModeBanner: false,
+     theme:ThemeData(
+       textTheme: const TextTheme(
+         bodyText1: TextStyle(
+           fontWeight: FontWeight.bold,
+           fontSize: 30.0,
+           fontFamily: 'BKANT',
+         ),
+
+       ),
+     ),
+     home:LoginScreen(),
     );
   }
 }

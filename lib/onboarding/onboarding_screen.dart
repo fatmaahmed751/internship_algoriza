@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:internship_algoriza/loginscreen/loginscreen.dart';
 import 'package:internship_algoriza/shared/components/components.dart';
+import 'package:internship_algoriza/signinscreen/signin_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -63,7 +64,7 @@ class OnBoardingScreen extends StatelessWidget {
                 Expanded(
                   child: PageView.builder(
                     itemBuilder: (context, index) =>
-                        BuildBoardingItem(boardingItems[index]),
+                        BuildBoardingItem(boardingItems[index],context),
                     itemCount: boardingItems.length,
                   ),
                 ),
@@ -85,7 +86,7 @@ class OnBoardingScreen extends StatelessWidget {
 }
 
 
-Widget BuildBoardingItem(BoardingItem item) => Center(
+Widget BuildBoardingItem(BoardingItem item,context) => Center(
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
@@ -99,10 +100,7 @@ Widget BuildBoardingItem(BoardingItem item) => Center(
         textAlign: TextAlign.center,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 30.0,
-        ),
+          style: Theme.of(context).textTheme.bodyText1,
       ),
       Center(
         child: Text(
@@ -121,7 +119,11 @@ Widget BuildBoardingItem(BoardingItem item) => Center(
       ),
            onBoardButton(),
       SizedBox(height: 5.0,),
-      thirdRow(text: 'Don\'t have an account? ', secText: 'Sign in'),
+      thirdRow(text: 'Don\'t have an account? ', secText: 'Sign in',
+      function: (){
+        Navigator.push(context,
+        MaterialPageRoute(builder: (context)=>SignInScreen()),);
+      }),
     ],
   ),
 

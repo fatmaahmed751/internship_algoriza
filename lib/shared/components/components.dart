@@ -4,14 +4,20 @@ import 'package:flutter/material.dart';
 
 import '../../loginscreen/loginscreen.dart';
 
-Widget welcomeText({
+Widget welcomeText(
+    BuildContext context,{
   String text='Welcome to fashion Daily',
 })=>
     Text(
       text=text,
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+        fontSize: 13.0,
+        fontWeight: FontWeight.w300
+      ),
     );
 
-Widget defaultRow({
+Widget defaultRow(
+    BuildContext context,{
   required String text ,
   double fontSize=0.0,
   FontWeight fontWeight=FontWeight.bold,
@@ -22,30 +28,35 @@ Widget defaultRow({
   children:  [
     Text(
       text =text,
-      style: TextStyle(
-        fontSize:30.0,
-        fontWeight:fontWeight,
-        color:textColor,
-      ),),
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+        fontSize: 35.0,
+        fontWeight: FontWeight.w500,
+        color: Colors.black
+      ),
+
+    ),
     const Spacer(),
     Text(
       text='Help',
-      style: const TextStyle(
-        color:Colors.blue,
-        fontSize:12.0,
-      ),),
+style: Theme.of(context).textTheme.bodyText1!.copyWith(
+  fontSize: 12.0,
+  fontWeight:FontWeight.w100,
+  color: Colors.blue
+),
+    ),
     const SizedBox(
       width: 3.0,),
     CircleAvatar(
       radius: radius,
-      child: const Icon(
-        Icons.details_sharp,
-        size: 9,
-        color: Colors.white,),
-
+    child: const Icon(
+      Icons.question_mark_rounded,
+      size: 9,
     ),
-  ],
-);
+       ),
+],
+    );
+
+
 
 Widget secText( {
   required String text,
@@ -78,7 +89,7 @@ Widget defaultFormField({
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(7.0),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.redAccent,
                 )
@@ -105,7 +116,7 @@ Widget defaultButton({
         onPressed: () {},
         child:  Text(
           text=text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -145,12 +156,22 @@ Widget secButton({
           ),
         ),
         onPressed: () {},
-        child: const Text(
-          'Sign with by google',
-          style: TextStyle(
-            color: Colors.blueAccent,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Image(
+              height:50.0,
+              width: 20.0,
+              image:AssetImage('assets/images/unnamed.png',
+            ),),
+            const Text(
+              'Sign with by google',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -158,26 +179,28 @@ Widget secButton({
 Widget thirdRow({
   required String text,
   required String secText,
+  Function?function,
 })=>
     Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children:  [
         Text(
           text=text,
-          //'Does\'t Has any account?',
           style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black54,
+              color: Colors.black,
               fontSize: 15.0),
         ),
         const SizedBox(width: 5.0,),
-        Text(
-          text=secText,
+        TextButton(
+         child: Text(text=secText,
           //'Register here',
           style: const TextStyle(
             color: Colors.blueAccent,
             fontWeight: FontWeight.bold,
           ),
+          ), onPressed:(){
+          function!();
+        },
         ),
       ],
     );
@@ -211,7 +234,7 @@ Widget onBoardButton(
   MaterialButton(
   onPressed: () {
   },
-  child: Text('Get Started',
+  child: const Text('Get Started',
   style: TextStyle(
       color: Colors.white,
   ),),
